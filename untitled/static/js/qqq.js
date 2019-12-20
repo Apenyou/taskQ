@@ -1,2 +1,1 @@
-// alert(11111111111);
-console.log('123123123123');
+$('#datetimepicker').datetimepicker();
