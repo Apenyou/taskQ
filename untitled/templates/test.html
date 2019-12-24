@@ -1,19 +1,20 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
     <script src="{% static "js/qqq.js" %}"></script>
     <link rel="stylesheet" href="{% static "css/st1.css" %}">
+
+    <!-- 日期选择 -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/wui.min.css" %}">
+   <!-- <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">-->
+    <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/angular.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/wui-date.js" %}" charset="utf-8"></script>
 
 
 </head>
@@ -23,9 +24,17 @@
     <div id="o2">{{ Jumbotron|safe }}</div>
     <div id="o3"></div>
     <div id="o4"></div>
+
+
+
 </div>
 
 {{ modal|safe }}
+
+
+<script type="text/javascript">
+	var app = angular.module('app',["wui.date"]);
+</script>
 
 
     <!-- Optional JavaScript -->

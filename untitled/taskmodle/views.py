@@ -13,20 +13,28 @@ def hello(request):
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Add task</button>
 </div>"""
 
-    context['modal'] = """<!-- Button trigger modal -->
-
-
+    context['modal'] = """
+    <!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">添加目标任务</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+      
+    <!-- 标题 -->
+    <div class="input-group flex-nowrap">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="addon-wrapping">主题</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
+    <p></p>
         
     <!-- 分类 -->
      <div class="input-group mb-3">
@@ -42,26 +50,23 @@ def hello(request):
     </div>
     
     <!-- 完成时间 -->
-<input type="text" class="form-control" value="02-16-2012">
-<div class="input-group date">
-    <input type="text" class="form-control" value="12-02-2012">
-    <div class="input-group-addon">
-        <span class="glyphicon glyphicon-th"></span>
-    </div>
-</div>
-<div class="input-group input-daterange">
-    <input type="text" class="form-control" value="2012-04-05">
-    <div class="input-group-addon">to</div>
-    <input type="text" class="form-control" value="2012-04-19">
-</div>
-
-    <!-- 标题 -->
     <div class="input-group flex-nowrap">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="addon-wrapping">主题</span>
+      <div class="input-group-prepend" >
+        <span class="input-group-text" style="padding:.2rem .75rem;" id="addon-wrapping">完成时间</span>
+        <wui-date 
+            format="yyyy-mm-dd hh:mm" 
+            placeholder="请选择或输入日期" 
+            id="date3" 
+            btns="{'ok':'确定','now':'此刻'}" 
+            ng-model="date3"
+        >
+        </wui-date>
       </div>
-      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
     </div>
+    <p></p>
+
+
+
        
     <!-- 详细内容 --> 
     <div class="form-group">
@@ -71,8 +76,8 @@ def hello(request):
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
       </div>
     </div>
   </div>
