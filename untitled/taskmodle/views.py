@@ -48,6 +48,18 @@ def hello(request):
         <option value="3">Three</option>
       </select>
     </div>
+    <!-- 重要等级 -->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">重要等级</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01">
+        <option value="1">一般</option>
+        <option value="2">重要</option>
+        <option value="3">非常重要</option>
+      </select>
+    </div>
+    <p></p>
     
     <!-- 完成时间 -->
     <div class="input-group flex-nowrap">
@@ -65,8 +77,6 @@ def hello(request):
     </div>
     <p></p>
 
-
-
        
     <!-- 详细内容 --> 
     <div class="form-group">
@@ -78,6 +88,7 @@ def hello(request):
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+        <input type="submit" class="btn btn-primary" value="添加" />
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-import api.test as test
+from api import test, dbsqlite
 from taskmodle import views
 
 
@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('test123123/',test.hello),
     path(r'hello/',views.hello),
+    path(r'dbsqlite/',dbsqlite.sql),
 ]
