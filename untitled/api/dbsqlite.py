@@ -50,10 +50,11 @@ def DELETE(params):
     c.execute(sqllint)
     return cursor
 
-def SELECT():
+def SELECT(params):
     '''
     :return: all list
     '''
+    taskid = [x for x in params]
     cursor = c.execute("SELECT taskid, ctime, title, status, content, dtime, rank from table_list")
     return cursor
 
