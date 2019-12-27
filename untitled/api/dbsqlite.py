@@ -4,16 +4,14 @@ Authors: 郭志强(guozhiqiang05@baidu.com)
 Date: 2019-12-25 15:29
 """
 from django.http import HttpResponse,JsonResponse
-import sqlite3
-import os
+
+from django.db import connection
+c = connection.cursor()
 
 cursor = 'succeed'
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-dbpath = os.path.join(BASE_DIR, 'db.sqlite3')
-conn = sqlite3.connect(dbpath)
-c = conn.cursor()
-
-def INSERT(taskid, ctime, title, status, content, dtime, rank):
+def INSERT(params):
+    # print(type(params))
+    # print(len(params))
     '''
     :param taskid:
     :param ctime:
@@ -24,26 +22,33 @@ def INSERT(taskid, ctime, title, status, content, dtime, rank):
     :param rank:
     :return:
     '''
-    c.execute('INSERT INTO table_list (taskid, ctime, title, status, content, dtime, rank) VALUES (%s, %s, %s, %s, %s, %s, %s)' % (taskid, ctime, title, status, content, dtime, rank))
 
+    taskid, ctime, title, status, content, dtime, rank = [x for x in params]
+    sqllint = 'INSERT INTO table_list (taskid, ctime, title, status, content, dtime, rank) VALUES (%s, %s, %s, %s, %s, %s, %s)' %(taskid, ctime, title, status, content, dtime, rank)
+    c.execute(sqllint)
+    return cursor
 
-def UPDATE(taskid, key, val):
+def UPDATE(params):
     '''
     :param taskid:
     :param kay:
     :param val:
     :return:
     '''
-    c.execute("UPDATE table_list set %s  = %s where taskid = %s" % (key, val, taskid))
+    taskid, key, val = [x for x in params]
+    sqllint = "UPDATE table_list set %s  = %s where taskid = %s" %(key, val, taskid)
+    c.execute(sqllint)
+    return cursor
 
-
-def DELETE(taskid):
+def DELETE(params):
     '''
     :param taskid:
     :return:
     '''
-    c.execute("DELETE from table_list where taskid = %s;" % (taskid))
-
+    taskid = [x for x in params]
+    sqllint = "DELETE from table_list where taskid = %s" %(taskid[0])
+    c.execute(sqllint)
+    return cursor
 
 def SELECT():
     '''
@@ -58,19 +63,22 @@ def sql(request, *val):
     :param val: param
     :return:
     '''
-    # request.GET.get()
-    query = request.query_params
+    return(request(*val))
 
-    print('================')
-    return HttpResponse('================', query)
-    #
-    # request(*val)
-    # conn.commit()
-    # conn.close()
-    # return HttpResponse(cursor)
+def control(request):
+    '''
+    :param request:
+    :return:
+    '''
+    k = list(request.GET.items())
+    funname = k[0][1]
+    params = k[1][1].split(',')
+    return HttpResponse(globals()[funname](params))
+
 if __name__ == '__main__':
-    sql(INSERT,3,2,3,4,5,6,7)
-    sql(UPDATE, 'status', 3)
-    sql(DELETE, 2)
-    sql(SELECT)
+    pass
+    # sql(INSERT,3,2,3,4,5,6,7)
+    # sql(UPDATE, 'status', 3)
+    # sql(DELETE, 2)
+    # sql(SELECT)
 

@@ -24,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('test123123/',test.hello),
     path(r'hello/',views.hello),
-    path(r'dbsqlite/',dbsqlite.sql),
+    path(r'dbsqlite/',dbsqlite.control),
 ]
